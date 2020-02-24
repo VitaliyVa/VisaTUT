@@ -1,16 +1,26 @@
-
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700,800&display=swap&subset=cyrillic');
 @import 'slick';
 @import 'slick-theme';
-@import 'onepage-scroll';
+@import 'select';
+
+@media (min-width: 996px) {
+    @import 'fullpage.min';
+    body, html {
+        overflow: hidden;
+    }
+   
+}
+
 @import 'header';
 @import 'sect2';
+@import 'fran';
 
 body {
 	position: relative;
 	padding: 0;
 	margin: 0;
 	// font-family: 'OpenSans-Regular', sans-serif;
-	font-family: 'Montserrat', sans-serif;
+	font-family: 'Open Sans', sans-serif;
     font-weight: 400;
     background-color: #fff;
 	
@@ -27,59 +37,52 @@ body {
 }
 
 
-.onepage-pagination {
-    * {
-        transition: all .2s;
-    }
 
-    top: 25%;
-
-    li:first-child {
-        opacity: 0;
-    }
-    li {
-        padding: 28px 0 0 0;
-
-        a {
-            position: relative;
-            width: 30px;
-            height: 30px;
-            padding: 15px;
-  
-        }
-        a.active {
-            width: 10px;
-            height: 10px;
-            background: #fff;
-            border-radius: 50%;
-        }
-    }
-   
-
+.slick-dots {
+    bottom: 30px;
 }
-.onepage-pagination li a:before {
-    width: 40px;
-    height: 40px;
-    background: transparent;
-    -moz-border-radius: 10px;
-    border: 2px solid #fff;
+.slick-dots li {
+    border: 1px solid #fff;
+    cursor: pointer;
+    border-radius: 50%; 
+    background-color: #fff;
+}
+.slick-dots li.slick-active {
+    border: 1px solid #e35c72;
+    background-color: #e35c72;
+    transition: all .4s;
+}
+.slick-dots li.slick-active:before {
+    position: absolute;
+    top: -5.4px;
+    left: -6px;
+    width: 30px;
+    height: 30px;
+    content: '';
+    border: 2px solid #e35c72;
     border-radius: 50%;
-    left: -5.2px;
-    bottom: -4.9px;
+    transition: all .4s;
 }
-.onepage-pagination li a.active:before {
-    width: 40px;
-    height: 40px;
-    background: transparent;
-    -moz-border-radius: 10px;
-    border: 2px solid #fff;
-    border-radius: 50%;
-    margin-top: 0;
-    left: -5.2px;
-    bottom: -4.9px;
+.slick-slide img {
+    // height: 100vh;
+    // width: 100vw;
+}
+.slick-dotted.slick-slider {
+    margin-bottom: 0;
+}
+.slick-dots li.slick-active button:before {
+    opacity: .75;
+    color: transparent;
 }
 
 
 
 
 
+
+.normalScroll {
+    
+
+    overflow: auto;
+    
+}
