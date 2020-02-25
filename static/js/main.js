@@ -1,9 +1,5 @@
 $(document).ready(function() {
 
-console.log("hello");
-
-
-
 
 
 
@@ -17,7 +13,6 @@ if (window.matchMedia("(max-width: 996px)").matches) {
      
       add_number = 1 + testz;
       var dinamic_id = '#sect' + add_number;
-      console.log('dinamic_id: ', dinamic_id);
       $(tehas).attr('href', dinamic_id);
     }
 
@@ -32,7 +27,8 @@ $('.one-time').slick({
   speed: 300,
   slidesToShow: 1,
   adaptiveHeight: true,
-  autoplay: true
+  autoplay: true,
+  lazyLoad: "string",
 });
 
 
@@ -46,11 +42,138 @@ if (doFullpage > 996) {
       // scrollOverflow: true,
     navigation: true,
     normalScrollElements: '.normalScroll',
-    slidesNavigation: true,
+    slidesNavigation: false,
     anchors: ['firstPage', 'secondPage', '3thPage', '4thpage', '5thpage', '6thpage', '7thpage'],
   
   });
 }
+
+// psevdo ====================================================>
+
+
+console.log(localStorage.psevdo_link);
+if (window.location.pathname == "/C:/Users/odmin/Desktop/visaTUT/index.html") {
+  if (localStorage.psevdo_link != 0) {
+    if (window.matchMedia("(max-width: 996px)").matches) {
+    function linkTime() {
+      let destination = $('#sect' + localStorage.psevdo_link).offset().top;
+      $('html, body').animate({ scrollTop: destination }, 600);
+      return false;
+    }
+    setTimeout(linkTime, 500);
+    } else {
+      fullpage_api . moveTo (localStorage.psevdo_link);
+    }
+  
+  }
+}
+
+$('.psevdo_link').on("click", function() {
+  localStorage.setItem('psevdo_link', '0');
+  let psevdo_class = $(this).data('index');
+ 
+  localStorage.psevdo_link = psevdo_class;
+  window.location.pathname = '/C:/Users/odmin/Desktop/visaTUT/index.html';
+});
+
+
+// psevdo ====================================================>
+
+
+
+
+$('.nav_name_link').on('click', function() {
+    let data_scheme = $(this).data('scheme');
+  
+    if (data_scheme == 1) {
+      window.location.pathname = '/C:/Users/odmin/Desktop/visaTUT/index.html';
+      localStorage.scheme = 1;
+    } else if (data_scheme > 10 && data_scheme < 100) {
+      localStorage.scheme = data_scheme;
+      console.log('localStorage.scheme: ', localStorage.scheme);
+      window.location.pathname = '/C:/Users/odmin/Desktop/visaTUT/index.html';
+    }
+});
+
+if (window.location.pathname == "/C:/Users/odmin/Desktop/visaTUT/index.html" && localStorage.scheme != 0 && localStorage.scheme != 1) {
+  
+
+  if (window.matchMedia("(max-width: 996px)").matches) {
+    function linkTime() {
+      let destination = $('#sect2').offset().top;
+      $('html, body').animate({ scrollTop: destination }, 600);
+      return false;
+    }
+    setTimeout(linkTime, 500);
+    } else {
+      fullpage_api.moveSectionDown();
+    }
+
+  add_visible_content();
+ 
+}
+if (window.location.pathname == "/C:/Users/odmin/Desktop/visaTUT/index.html" && localStorage.scheme == 1) {
+  if (window.matchMedia("(max-width: 996px)").matches) {
+    function linkTime() {
+      let destination = $('#sect2').offset().top;
+      $('html, body').animate({ scrollTop: destination }, 600);
+      return false;
+    }
+    setTimeout(linkTime, 500);
+    } else {
+      fullpage_api.moveSectionDown();
+    }
+}
+
+function add_visible_content () {
+  let find_content = $('.hidden_tab_content').find('.content' + localStorage.scheme);
+  
+
+  let default_content = $('.sect2 .default-block .default-content');
+  let default_image = $('.sect2 .default-block .default-image');
+  let hidden_tab_content = $('.hidden_tab_content');
+  let services_block = $('.services-block');
+  default_content.addClass('default-content_active');
+  default_image.addClass('default-image_active');
+  hidden_tab_content.addClass('hidden_tab_content_active');
+  services_block.addClass('services-block_active');
+
+  find_content.addClass('info-content_active');
+}
+
+
+
+
+localStorage.setItem('scheme', '0');
+localStorage.setItem('psevdo_link', '0');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 $.extend($.lazyLoadXT, {
@@ -150,7 +273,6 @@ $.extend($.lazyLoadXT, {
 
     $(".nav_name").click(function (){
       let page_info = $(this).data("nav");
-      console.log('page_info: ', page_info);
      
         if (page_info == "nav1") {
             removeModalServices();
@@ -204,14 +326,51 @@ $.extend($.lazyLoadXT, {
 
 $(document).mouseup(function(e) {
     var select = $(e.target).parents('.select'); // тут указываем класс элемента
+    let finder_visual = select.find('.select__input').find('.visual_label');
+    let finder_select = select.find('.select__input');
    
+
     if (select.length > 0) {} else {
         $('.select__wrap').removeClass('select__wrap_active');
         //   $('.field').removeClass('field-active');
         $('.field__icon').removeClass('field__icon_active');
         $('.select__input').removeClass('select__input_active');
-       
-    }
+        
+    
+     
+    
+        // if ($(finder_field)[0].outerText == "") {
+        //   finder_visual.removeClass('visual_label_active');
+        //   finder_select.removeClass('select__input_activate');
+        // }
+        //  } else if ($(finder_field)[0].outerText != "") {
+        //   finder_visual.addClass('visual_label_active');
+        //   finder_select.addClass('select__input_activate');
+        //  }
+      }
+
+      var form_input = $('.services_form').find('.select__input').find('.field_text');
+      for (var key = 0; key < form_input.length; key++) {
+
+        var services_select = form_input[key];
+
+       console.log($(services_select)[0].outerText);
+
+        if ($(services_select)[0].outerText == '') {
+          $('.visual_label').removeClass('visual_label_active');
+          $('.select__input').removeClass('select__input_activate');
+          } else if ($(services_select)[0].outerText != '') {
+            $('.visual_label').addClass('visual_label_active');
+            $('.select__input').addClass('select__input_activate');
+          }
+          return false;
+
+        }
+        
+        
+      
+ 
+   
     });
 
 
@@ -238,11 +397,29 @@ $('.select__wrap_item').on('click', function() {
     $('.select__input').removeClass('select__input_active');
     $('.field__icon').removeClass('field__icon_active');
     // $('.select__input').removeClass('select__input-active');
+
+    let field_label = $(this).parents('.select__wrap').parents('.select').find('.visual_label');
+    let field_input = $(this).parents('.select__wrap').parents('.select').find('.select__input');
+
+    field_label.addClass('visual_label_active');
+    field_input.addClass('select__input_activate');
     
   })
   
 
 
+
+  $('.select__input').on('click', function() {
+
+    let visual_label = $(this).find('.visual_label');
+
+
+      $(this).addClass('select__input_activate');
+      visual_label.addClass('visual_label_active');
+
+     
+     
+  });
 
 
 

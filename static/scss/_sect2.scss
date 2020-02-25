@@ -203,6 +203,10 @@ transition: all .4s;
     margin: 20px 20px 50px 0;
     width: 30%;
 
+    a {
+        text-decoration: none;
+    }
+
     &:hover {
         .countries_text {
             color: #e35c72;
@@ -246,9 +250,15 @@ transition: all .4s;
     width: 100%;
     display: flex;
     justify-content: flex-end;
+    flex-direction: column;
+    text-align: -webkit-right;
 }
 .field__icon img {
     width: 10px;
+}
+.select {
+    margin-top: 20px;
+    width: 200px;
 }
 
 .dop-content-service {
@@ -420,7 +430,7 @@ transition: all .4s;
 }
 @media (max-width: 441px) {
     .nav_name {
-        font-size: 15px;
+        font-size: 13px;
     }
     .mini-navigation-block img {
         width: 9px;

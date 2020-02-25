@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700,800&display=swap&subset=cyrillic');
+@import 'normalize';
 @import 'slick';
 @import 'slick-theme';
 @import 'select';
@@ -14,6 +15,9 @@
 @import 'header';
 @import 'sect2';
 @import 'fran';
+
+
+@import 'services2';
 
 body {
 	position: relative;
