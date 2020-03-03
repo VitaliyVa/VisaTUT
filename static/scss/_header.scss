@@ -5,6 +5,18 @@
     height: 100vh;
    
 }
+.info_top-prof {
+    svg {
+        transition: all .2s;
+    }
+    &:hover {
+        .svg_for_top {
+            color: #de4166;
+            fill: #de4166;
+            stroke: #de4166;
+        }
+    }
+}
 .default-image-1 {
     background: url('../img/bg-2.jpg') no-repeat center top / cover;
 }

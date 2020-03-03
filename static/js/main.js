@@ -2,6 +2,26 @@ $(document).ready(function() {
 
 
 
+  $('.form_consultation').fancybox({
+    touch: false,
+    scrolling: 'hidden',
+   
+});
+
+
+var inputHasFocus = $('.input_focus');
+inputHasFocus.on('focus', function() {
+  let focusFinder = $(this).parents('.inp-vak-wrap').find('.label__style');
+  focusFinder.addClass('label__style_active');
+});
+
+inputHasFocus.on('blur', function() {
+  if ($(this).val().length < 1 || $(this).val() == '+38(___) __ __ ___') {
+      let blurFinder =$(this).parents('.inp-vak-wrap').find('.label__style');
+      blurFinder.removeClass('label__style_active');
+  }
+  
+});
 
 
 
@@ -27,7 +47,7 @@ $('.one-time').slick({
   speed: 300,
   slidesToShow: 1,
   adaptiveHeight: true,
-  autoplay: true,
+  // autoplay: true,
   lazyLoad: "string",
 });
 
@@ -78,6 +98,9 @@ $('.psevdo_link').on("click", function() {
 
 
 // psevdo ====================================================>
+
+
+
 
 
 
@@ -139,7 +162,36 @@ function add_visible_content () {
   services_block.addClass('services-block_active');
 
   find_content.addClass('info-content_active');
+
+  localStorage.setItem('scheme', '0');
 }
+
+
+$('.header-button').on('click', function() {
+
+
+
+
+  let data_btn = $(this).data('btn');
+  console.log('data_btn: ', data_btn);
+  localStorage.scheme = data_btn;
+  
+  if (window.matchMedia("(max-width: 996px)").matches) {
+    function linkTime() {
+      let destination = $('#sect' + 2).offset().top;
+      $('html, body').animate({ scrollTop: destination }, 600);
+      return false;
+    }
+    setTimeout(linkTime, 500);
+    } else {
+      fullpage_api . moveTo (2);
+    }
+
+    add_visible_content();
+});
+
+
+
 
 
 
@@ -349,23 +401,44 @@ $(document).mouseup(function(e) {
         //  }
       }
 
-      var form_input = $('.services_form').find('.select__input').find('.field_text');
-      for (var key = 0; key < form_input.length; key++) {
+      var form_input1 = $('.services_form').find('.select__input1').find('.field_text1');
+      var form_input2 = $('.services_form').find('.select__input2').find('.field_text2');
+      var form_input3 = $('.services_form').find('.select__input3').find('.field_text3');
+      var form_input4 = $('.services_form').find('.select__input4').find('.field_text4');
 
-        var services_select = form_input[key];
-
-       console.log($(services_select)[0].outerText);
-
-        if ($(services_select)[0].outerText == '') {
-          $('.visual_label').removeClass('visual_label_active');
-          $('.select__input').removeClass('select__input_activate');
-          } else if ($(services_select)[0].outerText != '') {
-            $('.visual_label').addClass('visual_label_active');
-            $('.select__input').addClass('select__input_activate');
+      
+        if (form_input1[0].outerText == '') {
+          console.log(form_input1[0].outerText);
+          $('.services_form').find('.select__input1').removeClass('visual_label_active');
+          $('.select__input1').removeClass('select__input_activate');
+          } else if (form_input1[0].outerText != '') {
+            $('.services_form').find('.select__input1').addClass('visual_label_active');
+            $('.select__input1').addClass('select__input_activate');
           }
-          return false;
+        if (form_input2[0].outerText == '') {
+          $('.services_form').find('.select__input2').removeClass('visual_label_active');
+          $('.select__input2').removeClass('select__input_activate');
+          } else if (form_input2[0].outerText != '') {
+            $('.services_form').find('.select__input2').addClass('visual_label_active');
+            $('.select__input2').addClass('select__input_activate');
+          }
+        if (form_input3[0].outerText == '') {
+          $('.services_form').find('.select__input3').removeClass('visual_label_active');
+          $('.select__input3').removeClass('select__input_activate');
+          } else if (form_input3[0].outerText != '') {
+            $('.services_form').find('.select__input3').addClass('visual_label_active');
+            $('.select__input3').addClass('select__input_activate');
+          }
+        if (form_input4[0].outerText == '') {
+          $('.services_form').find('.select__input4').removeClass('visual_label_active');
+          $('.select__input4').removeClass('select__input_activate');
+          } else if (form_input4[0].outerText != '') {
+            $('.services_form').find('.select__input4').addClass('visual_label_active');
+            $('.select__input4').addClass('select__input_activate');
+          }
+         
 
-        }
+      
         
         
       
